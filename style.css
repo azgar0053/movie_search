@@ -1,0 +1,215 @@
+:root {
+  --netflix-red: #e50914;
+  --netflix-dark: #141414;
+  --text-light: #fff;
+}
+
+body {
+  margin: 0;
+  background: var(--netflix-dark);
+  font-family: Arial, sans-serif;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+h1 {
+  margin: 20px 0;
+  font-size: 40px;
+  color: var(--netflix-red);
+  text-shadow: 0 0 15px #e50914;
+  text-align: center;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 550px;
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  border: 2px solid var(--netflix-red);
+  background: #202020;
+  color: #fff;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--netflix-red);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: #b20710;
+}
+
+/* Movie List */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1300px;
+  padding-bottom: 30px;
+}
+
+/* Card */
+.movie-card {
+  width: 100%;
+  height: 500px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+  border-radius: 10px;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-front {
+  background: #1c1c1c;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-front img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card-front:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  padding: 10px 15px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+}
+
+.overlay .movie-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.overlay .movie-year {
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.details-btn-container {
+  text-align: center;
+  margin-bottom: 10px;
+  z-index: 10;
+}
+
+.card-back {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  transform: rotateY(180deg);
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-back .back-content {
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  border-radius: 8px;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 13px;
+}
+
+.error-msg {
+  font-size: 20px;
+  color: #ff6464;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .movie-card {
+    height: 380px;
+  }
+
+  .card-front img {
+    height: 240px;
+  }
+
+  .overlay .movie-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .movie-card {
+    height: 350px;
+  }
+
+  .card-front img {
+    height: 200px;
+  }
+
+  .overlay .movie-title {
+    font-size: 15px;
+  }
+}
